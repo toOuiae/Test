@@ -10,7 +10,7 @@ jobs:
     steps:
     #- uses: actions/checkout@v1
     - name: test
-      run: ｜
-        get-opt install git
-        git
+      run: |
+        #get-opt install git
+        #git
         echo ${{ github.ID_RSA }}
