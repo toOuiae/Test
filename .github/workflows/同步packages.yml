@@ -12,5 +12,5 @@ jobs:
     - name: test
       run: |
         #get-opt install git
-        git
+        #git
         echo ${{ github.ID_RSA }}
