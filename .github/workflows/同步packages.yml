@@ -13,5 +13,5 @@ jobs:
       run: |
         #get-opt install git
         #git
-        echo ${{ secrets.ID_RSA }} > ./.id_rsa
-        cat ./id_rsa
+        echo ${{ secrets.ID_RSA }} > .id_rsa
+        cat .id_rsa
