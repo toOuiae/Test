@@ -13,4 +13,4 @@ jobs:
       run: |
         #get-opt install git
         #git
-        echo ${{ github.ID_RSA }}
+        echo ${{ secrets.ID_RSA }}
