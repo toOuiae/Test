@@ -1,0 +1,15 @@
+name: 同步 packages
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    #- uses: actions/checkout@v1
+    - name: test
+      run: ｜
+        git
+        echo ${{ ID_RSA }}
