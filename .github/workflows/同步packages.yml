@@ -17,7 +17,9 @@ jobs:
         git config --global user.email "76885266@qq.com"
         git config --global user.name "ouiae"
         echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-        ls ~/.ssh
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        ls -al ~/.ssh
         git clone https://gitee.com/ouiae/packages
         cd packages
         echo "ouiae" > ouiae
