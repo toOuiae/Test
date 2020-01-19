@@ -25,6 +25,7 @@ jobs:
         cd packages
         ls -al
     - name: 新建本地库并同步
+      run: |
         git add .
         git commit -m "first commit"
         git remote set-url origin git@gitee.com:ouiae/packages.git
