@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: test
       run: |
+        mkdir ~/.ssh
         echo ${{ secrets.ID_RSA }} > ~/.ssh/.id_rsa
         git clone https://gitee.com/ouiae/packages
         cd packages
