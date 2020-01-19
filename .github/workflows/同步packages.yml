@@ -11,6 +11,7 @@ jobs:
       - name: Git Clone
         run: |
           git clone https://git.openwrt.org/feed/packages.git packagestem
+          ls -al
       - name: 清理git配置文件
         run: |
           cd packagestem
@@ -39,7 +40,7 @@ jobs:
         ls -al
     - name: 移动packages文件
       run: |
-        mv -f /packagestem/* /packages
+        mv -f packagestem/* packages/
     - name: 同步文件
       run: |
         cd packages
