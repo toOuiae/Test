@@ -11,7 +11,7 @@ jobs:
       - name: Git Clone
         run: |
           git clone https://git.openwrt.org/feed/packages.git packagestem
-          ls -al
+          pwd
       - name: 清理git配置文件
         run: |
           cd packagestem
@@ -36,9 +36,7 @@ jobs:
     - name: 拉取项目文件
       run: |
         git clone git@gitee.com:ouiae/packages.git
-        ls -al
-        cd packages
-        ls -al
+        pwd
     - name: 移动packages文件
       run: |
         ls -al
