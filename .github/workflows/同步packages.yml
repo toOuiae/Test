@@ -36,10 +36,12 @@ jobs:
     - name: 拉取项目文件
       run: |
         git clone git@gitee.com:ouiae/packages.git
+        ls -al
         cd packages
         ls -al
     - name: 移动packages文件
       run: |
+        ls -al
         mv -f packagestem/* packages/
     - name: 同步文件
       run: |
