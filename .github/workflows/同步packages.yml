@@ -15,10 +15,13 @@ jobs:
         git config --global user.email "76885266@qq.com"
         git config --global user.name "ouiae"
         echo ${{ secrets.ID_RSA }} > ~/.ssh/.id_rsa
+        ls -al
         git clone https://gitee.com/ouiae/packages
         cd packages
         echo "ouiae" > ouiae
         ls -al
         git add .
+        echo 1
         git commit -m "first commit"
+        echo 2
         git push -u origin master
