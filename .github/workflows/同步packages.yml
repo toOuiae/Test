@@ -26,6 +26,7 @@ jobs:
         ls -al
     - name: 新建本地库并同步
       run: |
+        cd packages
         #rm -rf .g* & .t* & .c* & .k* & *.md
         rm -rf .g*
         ls -al
