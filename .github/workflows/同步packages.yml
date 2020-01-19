@@ -23,5 +23,6 @@ jobs:
         git add .
         echo 1
         git commit -m "first commit"
+        git remote set-url origin git@gitee.com:ouiae/packages.git 
         echo 2
         git push -u origin master
