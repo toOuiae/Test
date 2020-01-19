@@ -42,7 +42,7 @@ jobs:
     - name: 移动packages文件
       run: |
         ls -al
-        mv -f packagestem/* packages/
+        cp -rf packagestem/* packages/
     - name: 同步文件
       run: |
         cd packages
