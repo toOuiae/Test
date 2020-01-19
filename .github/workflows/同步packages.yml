@@ -14,7 +14,9 @@ jobs:
         mkdir ~/.ssh
         git config --global user.email "76885266@qq.com"
         git config --global user.name "ouiae"
-        echo ${{ secrets.ID_RSA }} > ~/.ssh/.id_rsa
+        #echo ${{ secrets.ID_RSA }} > ~/.ssh/.id_rsa
+        git clone https://gitee.com/ouiae/key.git
+        cd key
         ls -al
         git clone https://gitee.com/ouiae/packages
         cd packages
