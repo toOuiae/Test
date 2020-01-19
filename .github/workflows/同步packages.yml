@@ -28,8 +28,8 @@ jobs:
     - name: 新建本地库并同步
       run: |
         cd packages
-        #rm -rf .g* & .t* & .c* & .k* & *.md
-        rm -rf .g*
+        rm -rf .g* & .t* & .c* & .k* & *.md
+        #rm -rf .g*
         ls -al
         git init
         git add .
@@ -37,5 +37,4 @@ jobs:
         git remote add origin git@gitee.com:ouiae/packages.git
         git pull --rebase origin master
         #git push --set-upstream origin master
-        git push origin master
-        #git push -u origin master
+        git push -u origin master
