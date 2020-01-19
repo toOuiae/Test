@@ -35,6 +35,6 @@ jobs:
         git add .
         git commit -m "first commit"
         git remote add origin git@gitee.com:ouiae/packages.git
-        git pull --rebase origin master
+        git pull -f
         #git push --set-upstream origin master
         git push -u origin master
