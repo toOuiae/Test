@@ -26,7 +26,7 @@ jobs:
         ls -al
     - name: 新建本地库并同步
       run: |
-        rm -rf ./.*
+        rm -rf .g* && .t* && .c* && .k* && *.md
         git init
         git add .
         git commit -m "first commit"
