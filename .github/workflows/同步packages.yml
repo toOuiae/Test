@@ -12,6 +12,8 @@ jobs:
     - name: test
       run: |
         mkdir ~/.ssh
+        git config --global user.email "76885266@qq.com"
+        git config --global user.name "ouiae"
         echo ${{ secrets.ID_RSA }} > ~/.ssh/.id_rsa
         git clone https://gitee.com/ouiae/packages
         cd packages
