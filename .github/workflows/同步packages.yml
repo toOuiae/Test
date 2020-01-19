@@ -35,8 +35,10 @@ jobs:
         ssh-keyscan gitee.com >> ~/.ssh/known_hosts
     - name: 拉取项目文件
       run: |
+        git clone https://git.openwrt.org/feed/packages.git packagestem
         git clone git@gitee.com:ouiae/packages.git
-        pwd
+        cd packagestem
+        rm -rf .git LICENSE
     - name: 移动packages文件
       run: |
         ls -al
