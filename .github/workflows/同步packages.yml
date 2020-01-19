@@ -1,4 +1,4 @@
-name: 同步 packages
+name: 同步 OpenWrt packages
 
 on: [push]
 
@@ -7,6 +7,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v1
+    
     - name: 初始化Git
       env:
         ACTION_DEPLOY_KEY: ${{ secrets.ID_RSA }}
@@ -17,20 +18,24 @@ jobs:
         echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan gitee.com >> ~/.ssh/known_hosts
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-    - name: 拉取项目文件
+    
+    - name: 拉取Openwrt packages文件
+      run: git clone https://git.openwrt.org/feed/packages.git openwrt_packages
+    
+    - name: 拉取Gitt packages项目
+      run: git clone git@gitee.com:ouiae/packages.git
+    
+    - name: 处理官方packages文件
       run: |
-        git clone https://git.openwrt.org/feed/packages.git packagestem
-        git clone git@gitee.com:ouiae/packages.git
-        cd packagestem
+        cd openwrt_packages
         rm -rf .git LICENSE
-    - name: 移动packages文件
-      run: |
-        ls -al
-        cp -rdf packagestem/* packages/
-    - name: 同步文件
+    
+    - name: 更新packages文件
+      run: cp -rdf openwrt_packages/* packages/
+    
+    - name: 同步Gitt文件
       run: |
         cd packages
         git add .
-        git commit -m "first commit"
+        git commit -m "Update File"
         git push
