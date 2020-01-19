@@ -10,13 +10,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: test
+      env:
+        ACTION_DEPLOY_KEY: ${{ secrets.ID_RSA }}
       run: |
         mkdir ~/.ssh
         git config --global user.email "76885266@qq.com"
         git config --global user.name "ouiae"
-        #echo ${{ secrets.ID_RSA }} > ~/.ssh/.id_rsa
-        git clone git@gitee.com:ouiae/key.git
-        cd key
+        echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
         ls -al
         git clone https://gitee.com/ouiae/packages
         cd packages
