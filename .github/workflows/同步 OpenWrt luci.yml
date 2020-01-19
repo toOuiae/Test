@@ -35,7 +35,7 @@ jobs:
     
     - name: 同步Gitt文件
       run: |
-        cd packages
+        cd luci
         git add .
         git commit -m "Update File"
         git push
