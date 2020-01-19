@@ -1,0 +1,41 @@
+name: 同步 OpenWrt luci
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: 初始化Git
+      env:
+        ACTION_DEPLOY_KEY: ${{ secrets.ID_RSA }}
+      run: |
+        mkdir -p ~/.ssh
+        git config --global user.email "76885266@qq.com"
+        git config --global user.name "Ouiae"
+        echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan gitee.com >> ~/.ssh/known_hosts
+    
+    - name: 拉取Openwrt luci文件
+      run: git clone https://git.openwrt.org/project/luci.git openwrt_luci
+    
+    - name: 拉取Gitt luci项目
+      run: git clone git@gitee.com:ouiae/luci.git
+    
+    - name: 处理官方luci文件
+      run: |
+        cd openwrt_luci
+        rm -rf .git LICENSE
+    
+    - name: 更新luci文件
+      run: cp -rdf openwrt_luci/* luci/
+    
+    - name: 同步Gitt文件
+      run: |
+        cd packages
+        git add .
+        git commit -m "Update File"
+        git push
