@@ -23,6 +23,7 @@ jobs:
       run: |
         git clone https://git.openwrt.org/feed/packages.git
         cd packages
+        ls -al
         git init
         git add .
         git commit -m "first commit"
