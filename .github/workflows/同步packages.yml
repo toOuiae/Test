@@ -24,9 +24,8 @@ jobs:
         git clone https://git.openwrt.org/feed/packages.git
         cd packages
         ls -al
-        git init
+    - name: 新建本地库并同步
         git add .
         git commit -m "first commit"
-        git remote add origin git@gitee.com:ouiae/packages.git
+        git remote set-url origin git@gitee.com:ouiae/packages.git
         git push -u origin master
-        #git remote set-url origin git@gitee.com:ouiae/packages.git
