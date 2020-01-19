@@ -9,23 +9,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: test
+    - name: 初始化Git
       env:
         ACTION_DEPLOY_KEY: ${{ secrets.ID_RSA }}
       run: |
-        mkdir ~/.ssh
+        mkdir -p ~/.ssh
         git config --global user.email "76885266@qq.com"
         git config --global user.name "Ouiae"
         echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
-        cat ~/.ssh/id_rsa
-        #chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-        ls -al ~/.ssh
-        git clone https://gitee.com/ouiae/packages
+        chmod 600 ~/.ssh/id_rsa
+        #ssh-keyscan github.com >> ~/.ssh/known_hosts
+    - name: 拉取项目文件
+        git clone https://git.openwrt.org/feed/packages.git
         cd packages
-        echo "ouiae" > ouiae
-        ls -al
+        git init
         git add .
         git commit -m "first commit"
-        git remote set-url origin git@gitee.com:ouiae/packages.git 
+        git remote add origin git@gitee.com:ouiae/packages.git
         git push -u origin master
+        #git remote set-url origin git@gitee.com:ouiae/packages.git
