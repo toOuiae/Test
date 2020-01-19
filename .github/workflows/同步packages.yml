@@ -13,7 +13,7 @@ jobs:
           git clone https://git.openwrt.org/feed/packages.git packagestem
       - name: 清理git配置文件
         run: |
-          cd packages
+          cd packagestem
           rm -rf .git LICENSE
           ls -al
   get_packages:
@@ -37,7 +37,7 @@ jobs:
         git clone git@gitee.com:ouiae/packages.git
     - name: 移动packages文件
       run: |
-        mv -uf packagestem packages
+        mv -f packagestem/* packages
     - name: 同步文件
       run: |
         cd packages
