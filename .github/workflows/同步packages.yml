@@ -3,10 +3,22 @@ name: 同步 packages
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: macos-latest
-
+  get_openwrt_packages:
+    name: 处理packages文件
+    runs-on: [macos-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Git Clone
+        run: |
+          git clone https://git.openwrt.org/feed/packages.git packagestem
+      - name: 清理git配置文件
+        run: |
+          cd packages
+          rm -rf .git LICENSE
+          ls -al
+  get_packages:
+    name: 同步packages
+    runs-on: [macos-latest]
     steps:
     - uses: actions/checkout@v1
     - name: 初始化Git
@@ -22,19 +34,13 @@ jobs:
         ssh-keyscan gitee.com >> ~/.ssh/known_hosts
     - name: 拉取项目文件
       run: |
-        git clone https://git.openwrt.org/feed/packages.git
-        cd packages
-        ls -al
-    - name: 新建本地库并同步
+        git clone git@gitee.com:ouiae/packages.git
+    - name: 移动packages文件
+      run: |
+        mv -uf packagestem packages
+    - name: 同步文件
       run: |
         cd packages
-        #rm -rf .g* & .t* & .c* & .k* & *.md
-        rm -rf .g*
-        ls -al
-        git init
         git add .
         git commit -m "first commit"
-        git remote add origin git@gitee.com:ouiae/packages.git
         git pull -f
-        git push --set-upstream origin master
-        git push -u origin master
