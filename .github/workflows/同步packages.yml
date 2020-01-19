@@ -3,23 +3,8 @@ name: 同步 packages
 on: [push]
 
 jobs:
-  get_openwrt_packages:
-    name: 处理packages文件
-    runs-on: [macos-latest]
-    steps:
-      - uses: actions/checkout@v1
-      - name: Git Clone
-        run: |
-          git clone https://git.openwrt.org/feed/packages.git packagestem
-          pwd
-      - name: 清理git配置文件
-        run: |
-          cd packagestem
-          rm -rf .git LICENSE
-          ls -al
-  get_packages:
-    name: 同步packages
-    runs-on: [macos-latest]
+  build:
+    runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v1
     - name: 初始化Git
@@ -42,7 +27,7 @@ jobs:
     - name: 移动packages文件
       run: |
         ls -al
-        cp -rf packagestem/* packages/
+        cp -rdf packagestem/* packages/
     - name: 同步文件
       run: |
         cd packages
